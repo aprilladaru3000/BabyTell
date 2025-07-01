@@ -3,7 +3,7 @@ import numpy as np
 import librosa
 import tensorflow as tf
 import pickle
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS
 import warnings
 warnings.filterwarnings('ignore')
@@ -67,7 +67,7 @@ def preprocess_audio(file_path, target_samples=SAMPLES_PER_TRACK):
 
 @app.route("/", methods=["GET"])
 def index():
-    return "<h1>Baby Cry Classification API</h1><p>Send a POST request to /predict with a .wav file.</p>"
+    return render_template("index.html")
 
 @app.route("/predict", methods=["POST"])
 def predict():
